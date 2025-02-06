@@ -3,7 +3,13 @@ import {View, Text, StyleSheet, Touchable, TouchableOpacity} from "react-native"
 function Button({color, title, onPress}) {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.container, colorStyles[color ?? "primary"]]}>
-      <Text style={styles.titleText}>{title}</Text>
+      {typeof title === "string" ?
+        <Text style={styles.titleText}>{title}</Text>
+      : 
+      <>
+        {title}
+      </>
+      }
     </TouchableOpacity>
   );
 }

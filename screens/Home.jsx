@@ -11,27 +11,14 @@ import TaskItem from "../components/TaskItem";
 
 function Home() {
   const navigation = useNavigation();
-  const [title, setTitle] = useState("");
   const {
     todos,
-    onCreateTodo,
     onDeleteTodo,
     onUpdateTodo
   } = useTodos();
 
   return (
       <View style={{paddingTop: 20, paddingHorizontal: 20, flex: 1}}>
-        <Button title="move" onPress={() => {
-          navigation.navigate("Details", {id: 42});
-        }} />
-        <TextInput
-          label="Title"
-          value={title}
-          onChangeText={setTitle}
-          placeholder="Title of your todo"
-        />
-        <Button title="Ajouter" color="secondary" onPress={() => {onCreateTodo(title); setTitle("");}} />
-        <View style={{height: 1, backgroundColor: "black", marginVertical: 15}}></View>
         <ScrollView >
           {todos.map((i) => (
             <TaskItem

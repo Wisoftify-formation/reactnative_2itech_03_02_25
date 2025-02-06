@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import useAsyncStorage from "./useAsyncStorage";
 import axios from "axios";
+import { useTodosContext } from "../contexts/TodosContext";
 
 const useTodos = () => {
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("http://10.0.2.2:3000/todos");
-        setTodos(res.data)
-      } catch (e) {
-        console.error(e);
-      }
-    })()
-  }, [])
+  const [todos, setTodos] = useTodosContext();
 
   const onCreateTodo = async (title) => {
     try {

@@ -1,44 +1,13 @@
-import {useState} from "react";
-import {View, Text, StyleSheet} from "react-native";
-import Button from "./Button";
-import TextInput from "./TextInput";
+import {Text, StyleSheet, TouchableOpacity} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const TaskItem = ({
-  item,
-  onDelete,
-  onUpdate
-}) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState("");
-
-  const handleClickValidate = () => {
-    if (!isEditing) {
-      setIsEditing(true);
-      setTitle(item.title)
-      return;
-    }
-
-    if (!title) return;
-    setIsEditing(false);
-    onUpdate(item.id, {...item, title});
-  }
+const TaskItem = ({item}) => {
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      {isEditing ? 
-        <TextInput
-          style={{flex: 1}}
-          value={title}
-          onChangeText={setTitle}
-        />
-      :
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Details", {id: item.id})}>
         <Text style={styles.title}>{item.title}</Text>
-      }
-      <View style={{flexDirection: "row", gap: 3}}>
-        <Button color="secondary" title={isEditing ? "Valider" : "Edit"} onPress={handleClickValidate} />
-        <Button color="danger" title="X" onPress={() => onDelete(item.id)} />
-      </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -49,7 +18,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 25
+    gap: 25,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   title: {
     fontSize: 28

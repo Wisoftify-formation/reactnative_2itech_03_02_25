@@ -4,9 +4,13 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import TodoProvider from './contexts/TodosContext';
 
 import Home from './screens/Home';
 import Details from "./screens/Details";
+import Create from "./screens/Create";
+
 import Button from './components/Button';
 
 const RootStack = createNativeStackNavigator({
@@ -16,17 +20,23 @@ const RootStack = createNativeStackNavigator({
       screen: Home,
       options: {
         title: "Todos",
-        headerRight: () => (
-          <Button title="se connecter" />
-        )
+        headerRight: () => {
+          const navigation = useNavigation();
+          return <Button title="+" onPress={() => navigation.navigate("Create")} />
+        }
       }
     },
-    Details
+    Details,
+    Create
   },
 });
 
 const Navigation = createStaticNavigation(RootStack);
 
 export default function App() {
-  return <Navigation />;
+  return (
+    <TodoProvider>
+      <Navigation />
+    </TodoProvider>
+  );
 }
