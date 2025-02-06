@@ -13,6 +13,7 @@ function Home() {
     todos,
     onCreateTodo,
     onDeleteTodo,
+    onUpdateTodo
   } = useTodos();
 
   return (
@@ -27,7 +28,12 @@ function Home() {
         <View style={{height: 1, backgroundColor: "black", marginVertical: 15}}></View>
         <ScrollView >
           {todos.map((i) => (
-            <TaskItem key={i.id} item={i} onDelete={onDeleteTodo} />
+            <TaskItem
+              key={i.id}
+              item={i}
+              onDelete={onDeleteTodo}
+              onUpdate={onUpdateTodo}
+            />
           ))}
         </ScrollView>
       </View>
