@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import useTodos from "../hooks/useTodos";
 
 import Button from "../components/Button";
@@ -8,6 +10,7 @@ import TextInput from "../components/TextInput";
 import TaskItem from "../components/TaskItem";
 
 function Home() {
+  const navigation = useNavigation();
   const [title, setTitle] = useState("");
   const {
     todos,
@@ -18,6 +21,9 @@ function Home() {
 
   return (
       <View style={{paddingTop: 20, paddingHorizontal: 20, flex: 1}}>
+        <Button title="move" onPress={() => {
+          navigation.navigate("Details", {id: 42});
+        }} />
         <TextInput
           label="Title"
           value={title}
