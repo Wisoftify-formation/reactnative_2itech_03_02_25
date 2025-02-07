@@ -50,7 +50,7 @@ export default function PomoFeature() {
             <Text style={styles.actionTitle}>25m</Text>
             <FontAwesome6 name="circle-play" iconStyle="solid" size={25} color="white"/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => dispatch({type: "START", payload: {duration: 0.2}})} style={[styles.action, {backgroundColor: "#38858a"}]}>
+          <TouchableOpacity onPress={() => dispatch({type: "START", payload: {duration: 5}})} style={[styles.action, {backgroundColor: "#38858a"}]}>
             <Text style={styles.actionTitle}>5m</Text>
             <FontAwesome6 name="circle-play" iconStyle="solid" size={25} color="white"/>
           </TouchableOpacity>
