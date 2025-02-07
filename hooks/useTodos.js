@@ -9,7 +9,7 @@ const useTodos = () => {
   const onCreateTodo = async (title) => {
     try {
       if (!title) return;
-      const res = await axios.post("http://10.0.2.2:3000/todos", {
+      const res = await axios.post("http://192.168.1.22:3000/todos", {
         title
       });
       setTodos([...todos, res.data]);
@@ -20,7 +20,7 @@ const useTodos = () => {
 
   const onDeleteTodo = async (id) => {
     try {
-      await axios.delete(`http://10.0.2.2:3000/todos/${id}`);
+      await axios.delete(`http://192.168.1.22:3000/todos/${id}`);
       setTodos(todos.filter(i => i.id !== id));
     } catch (e) {
       console.error(e);
@@ -30,7 +30,7 @@ const useTodos = () => {
   const onUpdateTodo = async (uid, data) => {
     try {
       const {id, ...rest} = data;
-      const res = await axios.put(`http://10.0.2.2:3000/todos/${id}`, rest);
+      const res = await axios.put(`http://192.168.1.22:3000/todos/${id}`, rest);
 
       setTodos(todos.map(i => i.id === uid ? res.data : i));
     } catch (e) {

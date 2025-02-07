@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, Vibration} from "react-native";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import {usePomoContext} from "../contexts/PomoContext";
 import dayjs from "dayjs";
@@ -21,6 +21,7 @@ export default function PomoFeature() {
       if (remaining <= 0) {
         dispatch({type: "STOP"});
         setDisplayDuration("00:00");
+        Vibration.vibrate([1000, 1000, 1000]);
       }
     }
 
@@ -49,7 +50,7 @@ export default function PomoFeature() {
             <Text style={styles.actionTitle}>25m</Text>
             <FontAwesome6 name="circle-play" iconStyle="solid" size={25} color="white"/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => dispatch({type: "START", payload: {duration: 1}})} style={[styles.action, {backgroundColor: "#38858a"}]}>
+          <TouchableOpacity onPress={() => dispatch({type: "START", payload: {duration: 0.2}})} style={[styles.action, {backgroundColor: "#38858a"}]}>
             <Text style={styles.actionTitle}>5m</Text>
             <FontAwesome6 name="circle-play" iconStyle="solid" size={25} color="white"/>
           </TouchableOpacity>
