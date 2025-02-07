@@ -8,6 +8,7 @@ import useTodos from "../hooks/useTodos";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import TaskItem from "../components/TaskItem";
+import PomoFeature from "../components/PomoFeature";
 
 function Home() {
   const navigation = useNavigation();
@@ -29,6 +30,7 @@ function Home() {
             />
           ))}
         </ScrollView>
+        <PomoFeature />
       </View>
   )
 }

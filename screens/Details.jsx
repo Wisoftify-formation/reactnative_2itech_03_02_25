@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import useTodos from "../hooks/useTodos";
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import TextInput from "../components/TextInput";
+import PomoFeature from "../components/PomoFeature";
 
 export default function Details() {
   const [isEditing, setIsEditing] = useState(false);
@@ -48,6 +49,7 @@ export default function Details() {
           </View>
         : null}
       </View>
+      <PomoFeature />
       <Button
         color="danger"
         onPress={handleDelete}

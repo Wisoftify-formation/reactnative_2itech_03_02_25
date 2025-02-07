@@ -1,4 +1,9 @@
 // In App.js in a new project
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
+dayjs.locale('fr');
 
 import * as React from 'react';
 import { View, Text } from 'react-native';
@@ -12,6 +17,7 @@ import Details from "./screens/Details";
 import Create from "./screens/Create";
 
 import Button from './components/Button';
+import PomoProvider from './contexts/PomoContext';
 
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
@@ -35,8 +41,10 @@ const Navigation = createStaticNavigation(RootStack);
 
 export default function App() {
   return (
-    <TodoProvider>
-      <Navigation />
-    </TodoProvider>
+    <PomoProvider>
+      <TodoProvider>
+        <Navigation />
+      </TodoProvider>
+    </PomoProvider>
   );
 }
